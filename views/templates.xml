@@ -1,0 +1,115 @@
+<?xml version="1.0" ?>
+<openerp>
+    <data>
+
+    <menuitem id="Meeting_System" name="Meeting_System"/>
+	<menuitem id="Meeting_System_Window" name="Meeting_System_Window" parent="Meeting_System" />
+
+<!-- view for Meeting_Information -->
+    <record id="Meeting_Information_view_tree" model="ir.ui.view">
+	    <field name="name">Meeting_Information.tree</field>
+		<field name="model">meeting.meeting</field>
+		<field name="arch" type="xml">
+		    <tree string="Meeting_Information tree">
+			    <field name="meeting name"/>
+				<field name="meeting type"/>
+				<field name="organizer" />
+				<field name="numbers" />
+				<field name="start date"/>
+				<field name="expiration date"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="meeting_information_View_form" model="ir.ui.view">
+	    <field name="name">meeting.meeting.form</field>
+		<field name="model">meeting.meeting</field>
+		<field name="arch" type="xml">
+		    <form string="meeting.meeting form">
+			    <sheet>
+				    <div class="oe_title">
+					    <label for="meeting name" class="oe_edit_only"/>
+						<h1><field name="meeting name" /></h1>
+					</div>
+					<group name="main_field_group">
+					    <group>
+						    <field name="meeting type"/>
+							<field name="organizer" />
+							<field name="email"/>
+							<field name="numbers"/>
+						</group>
+						<group>
+						    <field name="meetingroom id"/>
+							<field name="start date"/>
+							<field name="expiration date"/>
+						</group>
+					</group>
+					<notebook>
+					    <page string="meeting summary">
+						    <field name="meeting summary" nolabel="1" placeholder="meeting summary......"/>
+						</page>  
+					</notebook>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="action_list_meeting" model="ir.actions.act_window"  >
+	    <field name="name">Meeting</field>
+		<field name="res_model">meeting.meeting</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<menuitem id="Meeting_Information" name="Meeting_Infomation" 
+	    parent="Meeting_System_Window" 
+	    action="action_list_meeting" />
+
+	<!--view for meetingroom-->
+	    <record id="metingroom_view_tree" model="ir.ui.view">
+	    <field name="name">meetingroom.tree</field>
+		<field name="model">meeting.room</field>
+		<field name="arch" type="xml">
+		    <tree string="meetingroom tree">
+			    <field name="meetingroom id"/>
+				<field name="meetingroom size"/>
+				<field name="seats max" />
+				<field name="equipment" />
+			</tree>
+		</field>
+	</record>
+
+	<record id="meetingroom_view_form" model="ir.ui.view">
+	    <field name="name">meeting.room.form</field>
+		<field name="model">meeting.room</field>
+		<field name="arch" type="xml">
+		    <form string="meeting.room form">
+			    <sheet>
+					<group name="main_field_group">
+					    <group>
+						    <field name="meetingroom id"/>
+							<field name="meetingroom size" />
+							<field name="location"/>
+						</group>
+						<group>
+						    <field name="meetingroom name"/>
+						    <field name="seats max"/>
+							<field name="equipment"/>
+						</group>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>	
+	
+	<record id="action_list_meetingroom" model="ir.actions.act_window">
+	    <field name="name">MeetingRoom</field>
+		<field name="res_model">meeting.room</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<menuitem id="Meeting_Room" name="Meeting_Room" 
+	    parent="Meeting_System_Window" 
+	    action="action_list_meetingroom" />
+
+	</data>
+</openerp>
